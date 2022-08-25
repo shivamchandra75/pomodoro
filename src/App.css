@@ -1,38 +1,143 @@
-.App {
-  text-align: center;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  font-size: 62.5%;
+  --primary-color: #cdcdcd;
+  --primary-color-darker: rgb(146, 153, 186);
+  --secondary-color: rgb(27, 31, 55);
+  --secondary-color-faded: rgb(56, 61, 92);
+  --accent-color: rgb(84, 82, 131);
+  --heading-font: "Monoton", cursive;
+  --font: "Comfortaa", cursive;
+  --clock-font: "poppins", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.dark {
+  --primary-color: rgb(27, 31, 55);
+  --primary-color-darker: rgb(21, 24, 43);
+  --secondary-color: rgb(217, 223, 253);
+  --secondary-color-faded: rgb(90, 95, 119);
+  --accent-color: rgb(247, 100, 101);
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+@media (min-width: 300px) {
+  .App {
+    background-color: var(--primary-color);
+    height: 100vh;
+    display: flex;
+    padding-top: 4rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+    transition: background-color 0.3s;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .main-heading {
+    font-family: var(--heading-font);
+    color: var(--secondary-color);
+    cursor: pointer;
   }
-  to {
-    transform: rotate(360deg);
+
+  .clock {
+    min-width: 28rem;
+    min-height: 28rem;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: inset 2rem 2rem 2rem rgba(0, 0, 0, 0.2),
+      inset -2rem -2rem 2rem rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .circle-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 28rem;
+    width: 28rem;
+    transform: rotate(-90deg);
+    cursor: pointer;
+    pointer-events: none;
+  }
+
+  circle {
+    stroke: var(--accent-color);
+    fill: none;
+    stroke-width: 1rem;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .clock__progress {
+    width: 20.5rem;
+    height: 20.5rem;
+    border: 1rem solid var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 2rem 2rem 2rem rgba(0, 0, 0, 0.3),
+      inset -1.5rem -1.5rem 2rem rgba(255, 255, 255, 0.7),
+      1rem 1rem 2rem rgba(0, 0, 0, 0.3),
+      -0.5rem -0.5rem 2rem rgba(255, 255, 255, 0.7);
+  }
+  .clock__timer {
+    font-family: var(--clock-font);
+    color: var(--secondary-color);
+    font-size: 4.5rem;
+    font-weight: bold;
+  }
+
+  .clock__timer--state {
+    font-family: var(--clock-font);
+    color: var(--secondary-color);
+    letter-spacing: 1.2rem;
+    margin-right: -1.2rem;
+    cursor: pointer;
+  }
+
+  .dark .clock {
+    box-shadow: inset 2rem 2rem 2rem rgba(0, 0, 0, 0.3),
+      inset -1.5rem -1.5rem 1rem rgba(255, 255, 255, 0.1);
+  }
+  .dark .clock__progress {
+    box-shadow: inset 2rem 2rem 1rem rgba(0, 0, 0, 0.3),
+      inset -1.5rem -1.5rem 1.5rem rgba(255, 255, 255, 0.1),
+      2rem 2rem 1rem rgba(0, 0, 0, 0.3),
+      -0.5rem -0.5rem 1rem rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-container {
+    border: 0.5rem solid var(--primary-color-darker);
+    background-color: var(--primary-color-darker);
+    display: flex;
+    border-radius: 2.5rem;
+    gap: 1rem;
+  }
+
+  .btn {
+    cursor: pointer;
+    padding: 1.2em;
+    font-family: var(--clock-font);
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--secondary-color-faded);
+  }
+
+  .active {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-radius: 2.5rem;
   }
 }
