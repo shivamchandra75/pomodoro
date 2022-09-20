@@ -13,7 +13,7 @@ export default function Clock(props) {
         <circle
           cx="50%"
           cy="50%"
-          r={98}
+          r={props.circleRadius}
           strokeDasharray={props.strokeDashArray}
           strokeDashoffset={props.strokeDashOffset}
           ref={circle}
@@ -21,7 +21,8 @@ export default function Clock(props) {
       </svg>
       <div className="clock__progress">
         <div className="clock__timer">
-          {props.min}:{props.sec}
+          {props.min < 10 ? "0" + props.min : props.min}:
+          {props.sec < 10 ? "0" + props.sec : props.sec}
         </div>
         <p
           onClick={pauseTimer}
